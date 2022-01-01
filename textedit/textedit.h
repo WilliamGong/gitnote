@@ -5,6 +5,7 @@
 #include <QFileSystemModel>
 
 #include "ui_textedit.h"
+#include "repo.h"
 
 // forward declaration
 class QAction;
@@ -24,11 +25,16 @@ class Textedit : public QMainWindow {
   void saveFile();
   void newFile();
 
+  // git 
+  void gitInit();
+
  private:
   Ui::TexteditClass ui;
   QString path;
+  QString cwd;
   QFileInfo info;
   QFileSystemModel modelDir;
+  gitnote::Repo repo;
 
   // check if file path is default
   bool isFileDefault;

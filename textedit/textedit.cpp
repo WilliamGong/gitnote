@@ -16,15 +16,17 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   connect(ui.actionOpenDir, &QAction::triggered, this, &Textedit::openDir);
   connect(ui.treeViewDir, &QTreeView::doubleClicked, this,
           static_cast<void (Textedit::*)(const QModelIndex &)>(&Textedit::openFile));
+  connect(ui.actionGitInit, &QAction::triggered, this, &Textedit::gitInit);
 
   // var init
   this->path = "Untitled.txt";
   this->info = QFileInfo(path);
   this->isFileDefault = true;
+  this->cwd = QDir::homePath();
   // Dir tree
-  modelDir.setRootPath(QDir::homePath());
+  modelDir.setRootPath(this->cwd);
   ui.treeViewDir->setModel(&modelDir);
-  ui.treeViewDir->setRootIndex(modelDir.index(QDir::homePath()));
+  ui.treeViewDir->setRootIndex(modelDir.index(this->cwd));
   ui.treeViewDir->setColumnHidden(1, true);
   ui.treeViewDir->setColumnHidden(2, true);
   ui.treeViewDir->setColumnHidden(3, true);
@@ -143,13 +145,34 @@ void Textedit::newFile() {
 }
 
 void Textedit::openDir() {
+  int err;
   QString dir =
       QFileDialog::getExistingDirectory(this, tr("Open Directory"), ".");
   if (!dir.isEmpty()) {
+    this->cwd = dir;
     modelDir.setRootPath(dir);
     ui.treeViewDir->setRootIndex(modelDir.index(dir));
+
+    err = this->repo.open(dir.toStdString());
+    if(!err) {
+      QMessageBox::information(this, 
+                              tr("Git"), 
+                              tr("Git repository open sucessfully. "));
+    }
   } else {
-    QMessageBox::warning(this, tr("Open directory"),
-                         tr("Can not open this directory: \n%1").arg(dir));
+    QMessageBox::warning(this, 
+                        tr("Open directory"),
+                        tr("Can not open this directory: \n%1").arg(dir));
+  }
+
+  this->repo.open(this->cwd.toStdString());
+}
+
+void Textedit::gitInit() {
+  int err = this->repo.init(this->cwd.toStdString());
+  if(!err) {
+    QMessageBox::information(this, 
+                            tr("Init succeed. "), 
+                            tr("Git repository initialization succeed. "));
   }
 }

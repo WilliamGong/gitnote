@@ -11,13 +11,17 @@ endif()
 # set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.12.11/5.12.11/msvc2017_64/lib/cmake")
 find_package(Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
 
+include_directories(../libgit2/include)
+
 set(SRC_FILE 
     main.cpp 
     textedit.cpp 
+    repo.cpp 
     )
 
 set(HEADER_FILE 
     textedit.h 
+    repo.h 
     )
 
 set(FORM_FILE 
@@ -38,6 +42,7 @@ add_executable(textedit
 target_link_libraries(${PROJECT_NAME}
                         Qt5::Core                       
                         Qt5::Widgets 
+                        git2 
                         )
 
 add_custom_command(TARGET textedit 
