@@ -6,9 +6,12 @@
 #include "textedit.h"
 
 Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
+  gitStatus = new DialogGitStatus(this);
   ui.setupUi(this);
 
   // connect signal and slot
+
+  // File
   connect(ui.actionOpenFile, &QAction::triggered, this,
           static_cast<void (Textedit::*)()>(&Textedit::openFile));
   connect(ui.actionSaveFile, &QAction::triggered, this, &Textedit::saveFile);
@@ -16,7 +19,10 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   connect(ui.actionOpenDir, &QAction::triggered, this, &Textedit::openDir);
   connect(ui.treeViewDir, &QTreeView::doubleClicked, this,
           static_cast<void (Textedit::*)(const QModelIndex &)>(&Textedit::openFile));
+
+  // git
   connect(ui.actionGitInit, &QAction::triggered, this, &Textedit::gitInit);
+  connect(ui.actionGitStatus, &QAction::triggered, this, &Textedit::startDialogGitStatus);
 
   // var init
   this->path = "Untitled.txt";
@@ -36,7 +42,9 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   this->setWindowTitle(this->info.fileName());
  }
 
-Textedit::~Textedit() {}
+Textedit::~Textedit() {
+  delete[] gitStatus;
+}
 
 void Textedit::openFile() { 
 	QString path =
@@ -175,4 +183,10 @@ void Textedit::gitInit() {
                             tr("Init succeed. "), 
                             tr("Git repository initialization succeed. "));
   }
+}
+
+void Textedit::startDialogGitStatus() {
+  gitStatus->setRepo(&this->repo);
+  gitStatus->update();
+  gitStatus->show();
 }

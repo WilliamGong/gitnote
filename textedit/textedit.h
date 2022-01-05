@@ -6,6 +6,7 @@
 
 #include "ui_textedit.h"
 #include "repo.h"
+#include "dialoggitstatus.h"
 
 // forward declaration
 class QAction;
@@ -27,14 +28,20 @@ class Textedit : public QMainWindow {
 
   // git 
   void gitInit();
+  void startDialogGitStatus();
 
  private:
   Ui::TexteditClass ui;
+
+  // File System
   QString path;
   QString cwd;
   QFileInfo info;
   QFileSystemModel modelDir;
+
+  //git
   gitnote::Repo repo;
+  DialogGitStatus *gitStatus;
 
   // check if file path is default
   bool isFileDefault;

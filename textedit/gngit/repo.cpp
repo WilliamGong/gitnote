@@ -31,3 +31,18 @@ int Repo::open(std::string path) {
 
     return err;
 }
+
+void Repo::statusUpdate() {
+    git_status_options opts;
+    git_status_options_init(&opts, GIT_STATUS_OPTIONS_VERSION);
+
+    // scan index and workdir
+    opts.show = GIT_STATUS_SHOW_INDEX_AND_WORKDIR;
+    // flags
+    opts.flags = GIT_STATUS_OPT_INCLUDE_UNTRACKED |
+                    GIT_STATUS_OPT_RECURSE_UNTRACKED_DIRS |
+                    GIT_STATUS_OPT_RENAMES_HEAD_TO_INDEX | 
+                    GIT_STATUS_OPT_SORT_CASE_SENSITIVELY;
+    
+    git_status_list_new(&this->stat, this->repo, &opts);
+}

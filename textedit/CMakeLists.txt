@@ -19,14 +19,17 @@ find_package(Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
 set(SRC_FILE 
     main.cpp 
     textedit.cpp 
+    dialoggitstatus.cpp 
     )
 
 set(HEADER_FILE 
     textedit.h 
+    dialoggitstatus.h 
     )
 
 set(FORM_FILE 
     textedit.ui 
+    dialoggitstatus.ui 
     )
 
 set(RESOURCES_FILE 
@@ -48,9 +51,4 @@ target_link_libraries(${PROJECT_NAME}
                         gngit 
                         )
 
-add_custom_command(TARGET textedit 
-                    POST_BUILD 
-                    COMMAND ${CMAKE_COMMAND} -E copy 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/textedit_zh.qm 
-                    ${CMAKE_BINARY_DIR}/bin/textedit_zh.qm 
-                    )
+
