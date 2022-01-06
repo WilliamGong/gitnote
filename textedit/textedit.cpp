@@ -141,7 +141,6 @@ void Textedit::newFile() {
 }
 
 void Textedit::openDir() {
-  int err;
   QString dir =
       QFileDialog::getExistingDirectory(this, tr("Open Directory"), ".");
 
@@ -150,22 +149,23 @@ void Textedit::openDir() {
     modelDir.setRootPath(dir);
     ui.treeViewDir->setRootIndex(modelDir.index(dir));
 
-    err = this->repo.open(dir.toStdString());
-    if(!err) {
-      QMessageBox::information(this, 
+    isGitOpened = false;
+    if(!isGitOpened) {
+      int err = this->repo.open(dir.toStdString());
+      if(!err) {
+        QMessageBox::information(this, 
                               tr("Git"), 
                               tr("Git repository open sucessfully. "));
-      isGitOpened = true;
-    } else {
-      isGitOpened = false;
+        isGitOpened = true;
+      } else {
+        isGitOpened = false;
+      } 
     }
   } else {
     QMessageBox::warning(this, 
                         tr("Open directory"),
                         tr("Can not open this directory: \n%1").arg(dir));
   }
-
-  this->repo.open(this->cwd.toStdString());
 }
 
 void Textedit::gitInit() {
