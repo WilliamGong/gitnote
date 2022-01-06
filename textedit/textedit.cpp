@@ -81,13 +81,15 @@ void Textedit::openFile(QString path) {
     ui.treeViewDir->setRootIndex(modelDir.index(info.dir().absolutePath()));
     this->cwd = info.dir().absolutePath();
 
-    int err = this->repo.open(info.dir().absolutePath().toStdString());
-    if (!err) {
-      QMessageBox::information(this, tr("Git"),
+    if (!isGitOpened) {
+      int err = this->repo.open(info.dir().absolutePath().toStdString());
+      if (!err) {
+        QMessageBox::information(this, tr("Git"),
                                tr("Git repository open sucessfully. "));
-      isGitOpened = true;
-    } else {
-      isGitOpened = false;
+        isGitOpened = true;
+      } else {
+        isGitOpened = false;
+      }
     }
 
     this->isFileDefault = false;

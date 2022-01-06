@@ -85,18 +85,24 @@ int Repo::commit() {
     git_tree_lookup(&tree, this->repo, &treeOid);
     git_signature_default(&signature, this->repo);
 
-    comment = time(NULL);
+    time_t currentTime;
+    time(&currentTime);
+    comment = ctime(&currentTime);
 
     err = git_commit_create_v(&commitOid, 
                                 this->repo, 
                                 "HEAD", 
                                 signature, 
                                 signature, 
-                                NULL, 
+                                "utf-8", 
                                 comment.c_str(), 
                                 tree, 
                                 parent ? 1 : 0, 
                                 parent);
+
+    git_index_write(this->index);
+    git_signature_free(signature);
+	git_tree_free(tree);
 
     return err;
 }
