@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QStandardItemModel>
+#include <QMessageBox>
 
 #include "repo.h"
 
@@ -21,6 +22,8 @@ public:
         this->repo = repo;
     }
     void update();
+    void add();
+    void commit();
 
 private:
     Ui::DialogGitStatus *ui;

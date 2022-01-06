@@ -15,6 +15,9 @@ DialogGitStatus::DialogGitStatus(QWidget *parent)
 
    //signal and slots
    connect(ui->btnRefresh, &QPushButton::clicked, this, &DialogGitStatus::update);
+   connect(ui->btnAdd, &QPushButton::clicked, this, &DialogGitStatus::add);
+   connect(ui->btnCommit, &QPushButton::clicked, this,
+           &DialogGitStatus::commit);
 }
 
 DialogGitStatus::~DialogGitStatus() {
@@ -94,4 +97,24 @@ void DialogGitStatus::setGitStatus(git_status_list *stat) {
         table->setItem(i, 0, new QStandardItem(path));
         table->setItem(i, 1, new QStandardItem(fstatus));
     }
+}
+
+void DialogGitStatus::add() {
+    this->repo->addAll();
+    this->update();
+}
+
+void DialogGitStatus::commit() {
+    int err;
+
+    this->repo->addAll();
+    err = this->repo->commit();
+
+    if(err == 0) {
+        QMessageBox::information(this, 
+                                    tr("Git commit"), 
+                                    tr("Commit succeed. "));
+    }
+
+    this->update();
 }

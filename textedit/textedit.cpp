@@ -50,31 +50,7 @@ void Textedit::openFile() {
 	QString path =
       QFileDialog::getOpenFileName(this, tr("Open file"), ".", tr("Text files(*.txt)"));
 
-	if (!path.isEmpty()) {
-          QFile file(path);
-          if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-              // Warning: cannot open file
-            QMessageBox::warning(this, tr("Read file"),
-                                 tr("Cannot open file: \n%1").arg(path));
-            return;
-          }
-
-          this->path = path;
-          this->info = QFileInfo(path);
-          this->setWindowTitle(this->info.fileName());
-          // Dir tree
-          modelDir.setRootPath(info.dir().absolutePath());
-          ui.treeViewDir->setRootIndex(
-              modelDir.index(info.dir().absolutePath()));
-
-          this->isFileDefault = false;
-          QTextStream in(&file);
-          ui.textEdit->setText(in.readAll());
-          file.close();
-    } else {
-          QMessageBox::warning(this, tr("Path"),
-                               tr("You didn't select any file. "));
-    }
+    this->openFile(path);
 }
 
 void Textedit::openFile(const QModelIndex &index) {
@@ -103,6 +79,16 @@ void Textedit::openFile(QString path) {
     // Dir tree
     modelDir.setRootPath(info.dir().absolutePath());
     ui.treeViewDir->setRootIndex(modelDir.index(info.dir().absolutePath()));
+    this->cwd = info.dir().absolutePath();
+
+    int err = this->repo.open(info.dir().absolutePath().toStdString());
+    if (!err) {
+      QMessageBox::information(this, tr("Git"),
+                               tr("Git repository open sucessfully. "));
+      isGitOpened = true;
+    } else {
+      isGitOpened = false;
+    }
 
     this->isFileDefault = false;
     QTextStream in(&file);
@@ -156,6 +142,7 @@ void Textedit::openDir() {
   int err;
   QString dir =
       QFileDialog::getExistingDirectory(this, tr("Open Directory"), ".");
+
   if (!dir.isEmpty()) {
     this->cwd = dir;
     modelDir.setRootPath(dir);
@@ -166,6 +153,9 @@ void Textedit::openDir() {
       QMessageBox::information(this, 
                               tr("Git"), 
                               tr("Git repository open sucessfully. "));
+      isGitOpened = true;
+    } else {
+      isGitOpened = false;
     }
   } else {
     QMessageBox::warning(this, 
@@ -186,7 +176,13 @@ void Textedit::gitInit() {
 }
 
 void Textedit::startDialogGitStatus() {
-  gitStatus->setRepo(&this->repo);
-  gitStatus->update();
-  gitStatus->show();
-}
+  if (!isGitOpened) {
+    QMessageBox::warning(this, 
+                         tr("Git Status"),
+                         tr("No Git repository has opened. "));
+  } else {
+    gitStatus->setRepo(&this->repo);
+    gitStatus->update();
+    gitStatus->show();
+  }
+ }

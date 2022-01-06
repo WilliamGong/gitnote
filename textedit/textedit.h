@@ -45,4 +45,6 @@ class Textedit : public QMainWindow {
 
   // check if file path is default
   bool isFileDefault;
+  // check if git repo is opened. 
+  bool isGitOpened = false;
 };

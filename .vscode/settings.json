@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.rmd": "markdown",
-        "qmainwindow": "cpp"
+        "qmainwindow": "cpp",
+        "common.h": "c"
     }
 }
