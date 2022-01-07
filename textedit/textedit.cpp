@@ -169,11 +169,18 @@ void Textedit::openDir() {
 }
 
 void Textedit::gitInit() {
-  int err = this->repo.init(this->cwd.toStdString());
-  if(!err) {
-    QMessageBox::information(this, 
-                            tr("Init succeed. "), 
-                            tr("Git repository initialization succeed. "));
+  if(!isGitOpened) {
+    int err = this->repo.init(this->cwd.toStdString());
+    if(!err) {
+      QMessageBox::information(this, 
+                              tr("Init succeed. "), 
+                              tr("Git repository initialization succeed. "));
+      isGitOpened = true;
+    }
+  }else {
+    QMessageBox::critical(this, 
+                          tr("Git Init"), 
+                          tr("A Git repository has been opened, do not re init. "));
   }
 }
 
