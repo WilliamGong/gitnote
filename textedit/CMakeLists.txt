@@ -1,5 +1,9 @@
 project(textedit)
 
+include_directories(gngit)
+include_directories(${CMAKE_SOURCE_DIR}/libgit2/include)
+add_subdirectory(gngit)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -11,17 +15,33 @@ endif()
 # set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.12.11/5.12.11/msvc2017_64/lib/cmake")
 find_package(Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
 
+
 set(SRC_FILE 
     main.cpp 
     textedit.cpp 
+    dialoggitstatus.cpp 
+    dialoggitremote.cpp 
+    dialoggitremoteadd.cpp 
+    dialoggitremoteedit.cpp 
+    dialogauthssl.cpp 
     )
 
 set(HEADER_FILE 
     textedit.h 
+    dialoggitstatus.h 
+    dialoggitremote.h 
+    dialoggitremoteadd.h 
+    dialoggitremoteedit.h 
+    dialogauthssl.h 
     )
 
 set(FORM_FILE 
     textedit.ui 
+    dialoggitstatus.ui 
+    dialoggitremote.ui 
+    dialoggitremoteadd.ui 
+    dialoggitremoteedit.ui 
+    dialogauthssl.ui 
     )
 
 set(RESOURCES_FILE 
@@ -36,13 +56,11 @@ add_executable(textedit
                 )
 
 target_link_libraries(${PROJECT_NAME}
+                        PRIVATE 
                         Qt5::Core                       
                         Qt5::Widgets 
+                        PUBLIC 
+                        gngit 
                         )
 
-add_custom_command(TARGET textedit 
-                    POST_BUILD 
-                    COMMAND ${CMAKE_COMMAND} -E copy 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/textedit_zh.qm 
-                    ${CMAKE_BINARY_DIR}/bin/textedit_zh.qm 
-                    )
+

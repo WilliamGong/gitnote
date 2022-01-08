@@ -5,6 +5,10 @@
 #include <QFileSystemModel>
 
 #include "ui_textedit.h"
+#include "repo.h"
+#include "dialoggitstatus.h"
+#include"dialoggitremote.h"
+#include "dialogauthssl.h"
 
 // forward declaration
 class QAction;
@@ -24,12 +28,30 @@ class Textedit : public QMainWindow {
   void saveFile();
   void newFile();
 
+  // git 
+  void gitInit();
+  void startDialogGitStatus();
+  void startDialogGitRemote();
+  void gitPush();
+  void gitFetch();
+  void gitPull();
+
  private:
   Ui::TexteditClass ui;
+
+  // File System
   QString path;
+  QString cwd;
   QFileInfo info;
   QFileSystemModel modelDir;
 
+  //git
+  gitnote::Repo repo;
+  DialogGitStatus *gitStatus;
+  DialogGitRemote *gitRemote;
+
   // check if file path is default
   bool isFileDefault;
+  // check if git repo is opened. 
+  bool isGitOpened = false;
 };

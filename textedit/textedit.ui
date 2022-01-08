@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
-    <height>596</height>
+    <width>706</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>703</width>
+     <width>706</width>
      <height>22</height>
     </rect>
    </property>
@@ -69,9 +69,21 @@
      <string>Help</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuGit">
+    <property name="title">
+     <string>Git</string>
+    </property>
+    <addaction name="actionGitInit"/>
+    <addaction name="actionGitStatus"/>
+    <addaction name="actionGitRemote"/>
+    <addaction name="actionGitPush"/>
+    <addaction name="actionGitFetch"/>
+    <addaction name="actionGitPull"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuGit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNewFile">
@@ -117,6 +129,36 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="actionGitInit">
+   <property name="text">
+    <string>Init</string>
+   </property>
+  </action>
+  <action name="actionGitStatus">
+   <property name="text">
+    <string>Status</string>
+   </property>
+  </action>
+  <action name="actionGitRemote">
+   <property name="text">
+    <string>Remote</string>
+   </property>
+  </action>
+  <action name="actionGitPush">
+   <property name="text">
+    <string>Push</string>
+   </property>
+  </action>
+  <action name="actionGitFetch">
+   <property name="text">
+    <string>Fetch</string>
+   </property>
+  </action>
+  <action name="actionGitPull">
+   <property name="text">
+    <string>Pull</string>
    </property>
   </action>
  </widget>
