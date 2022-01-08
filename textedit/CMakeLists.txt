@@ -20,16 +20,25 @@ set(SRC_FILE
     main.cpp 
     textedit.cpp 
     dialoggitstatus.cpp 
+    dialoggitremote.cpp 
+    dialoggitremoteadd.cpp 
+    dialoggitremoteedit.cpp 
     )
 
 set(HEADER_FILE 
     textedit.h 
     dialoggitstatus.h 
+    dialoggitremote.h 
+    dialoggitremoteadd.h 
+    dialoggitremoteedit.h 
     )
 
 set(FORM_FILE 
     textedit.ui 
     dialoggitstatus.ui 
+    dialoggitremote.ui 
+    dialoggitremoteadd.ui 
+    dialoggitremoteedit.ui 
     )
 
 set(RESOURCES_FILE 

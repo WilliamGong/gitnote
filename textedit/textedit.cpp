@@ -7,6 +7,7 @@
 
 Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   gitStatus = new DialogGitStatus(this);
+  gitRemote = new DialogGitRemote(this);
   ui.setupUi(this);
 
   // connect signal and slot
@@ -23,6 +24,7 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   // git
   connect(ui.actionGitInit, &QAction::triggered, this, &Textedit::gitInit);
   connect(ui.actionGitStatus, &QAction::triggered, this, &Textedit::startDialogGitStatus);
+  connect(ui.actionGitRemote, &QAction::triggered, this, &Textedit::startDialogGitRemote);
 
   // var init
   this->path = "Untitled.txt";
@@ -43,7 +45,8 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
  }
 
 Textedit::~Textedit() {
-  delete[] gitStatus;
+  delete gitStatus;
+  delete gitRemote;
 }
 
 void Textedit::openFile() { 
@@ -186,7 +189,7 @@ void Textedit::gitInit() {
 
 void Textedit::startDialogGitStatus() {
   if (!isGitOpened) {
-    QMessageBox::warning(this, 
+    QMessageBox::critical(this, 
                          tr("Git Status"),
                          tr("No Git repository has opened. "));
   } else {
@@ -194,4 +197,16 @@ void Textedit::startDialogGitStatus() {
     gitStatus->update();
     gitStatus->show();
   }
+ }
+
+ void Textedit::startDialogGitRemote() {
+   if(!isGitOpened) {
+     QMessageBox::critical(this, 
+                            tr("Git Remote"), 
+                            tr("No Git repository has opened. "));
+   }else {
+     gitRemote->setRepo(&this->repo);
+     gitRemote->update();
+     gitRemote->show();
+   }
  }

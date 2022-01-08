@@ -11,8 +11,7 @@ namespace Ui {
 class DialogGitStatus;
 }
 
-class DialogGitStatus : public QDialog
-{
+class DialogGitStatus : public QDialog {
     Q_OBJECT
 
 public:

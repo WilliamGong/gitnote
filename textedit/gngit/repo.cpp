@@ -106,3 +106,84 @@ int Repo::commit() {
 
     return err;
 }
+
+std::vector<std::string> Repo::getRemotesList() {
+    std::vector<std::string> ret;
+    git_strarray remotes = {0};
+
+    git_remote_list(&remotes, this->repo);
+
+    for(int i = 0; i < (int) remotes.count; i++) {
+        std::string name = remotes.strings[i];
+        // FIXME
+        ret.push_back(name);
+    }
+
+    git_strarray_dispose(&remotes);
+    return ret;
+}
+
+int Repo::remoteAdd(std::string name, std::string url) {
+    int err;
+    git_remote *remote = {0};
+
+    err = git_remote_create(&remote, this->repo, name.c_str(), url.c_str());
+
+    return err;
+}
+
+int Repo::remoteRemove(std::string name) {
+    int err = git_remote_delete(this->repo, name.c_str());
+    return err;
+}
+
+remoteInfo Repo::getRemoteInfo(std::string name) {
+    remoteInfo ret;
+    ret.name = name;
+    git_remote *remote;
+
+    git_remote_lookup(&remote, this->repo, name.c_str());
+
+    ret.fetchUrl = git_remote_url(remote);
+    const char * tmp = git_remote_pushurl(remote);
+    if(tmp != nullptr) {
+        ret.pushUrl = tmp;
+    }
+
+    git_remote_free(remote);
+    return ret;
+}
+
+int Repo::rename(std::vector<char *> &problems, std::string oldName, std::string newName) {
+    int err;
+    git_strarray originalProblems = {0};
+
+    err = git_remote_rename(&originalProblems, this->repo, oldName.c_str(), newName.c_str());
+
+    if(!err) {
+        return 0;
+    }
+
+    for(int i = 0; i < (int) originalProblems.count; i++) {
+        problems.push_back(originalProblems.strings[i]);
+    }
+
+    git_strarray_dispose(&originalProblems);
+    return err;
+}
+
+int Repo::setFetchUrl(std::string name, std::string url) {
+    int err;
+
+    err = git_remote_set_url(this->repo, name.c_str(), url.c_str());
+
+    return err;
+}
+
+int Repo::setPushUrl(std::string name, std::string url) {
+    int err;
+
+    err = git_remote_set_pushurl(this->repo, name.c_str(), url.c_str());
+
+    return err;
+}
