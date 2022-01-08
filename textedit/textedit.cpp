@@ -26,6 +26,8 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   connect(ui.actionGitStatus, &QAction::triggered, this, &Textedit::startDialogGitStatus);
   connect(ui.actionGitRemote, &QAction::triggered, this, &Textedit::startDialogGitRemote);
   connect(ui.actionGitPush, &QAction::triggered, this, &Textedit::gitPush);
+  connect(ui.actionGitFetch, &QAction::triggered, this, &Textedit::gitFetch);
+  connect(ui.actionGitPull, &QAction::triggered, this, &Textedit::gitPull);
 
   // var init
   this->path = "Untitled.txt";
@@ -213,8 +215,14 @@ void Textedit::startDialogGitStatus() {
  }
 
  void Textedit::gitPush() {
+   QString pushTitle = tr("Push");
+   if(!isGitOpened) {
+    QMessageBox::critical(this, 
+                            pushTitle, 
+                            tr("Git repository has not been opened. "));
+    return;
+   }
   int err;
-  QString pushTitle = tr("Push");
   DialogAuthSSL *dlg = new DialogAuthSSL(this);
   gitnote::authSSLInfo auth;
 
@@ -246,6 +254,99 @@ void Textedit::startDialogGitStatus() {
       QMessageBox::critical(this, 
                             pushTitle, 
                             tr("Push failed. "));
+      break;
+   }
+ }
+
+ void Textedit::gitFetch() {
+   int err;
+   QString fetchTitle = tr("Fetch");
+   if(!isGitOpened) {
+    QMessageBox::critical(this, 
+                            fetchTitle, 
+                            tr("Git repository has not been opened. "));
+    return;
+   }
+   err = this->repo.fetch();
+   switch(err) {
+    case 0:
+      QMessageBox::information(this, 
+                                fetchTitle, 
+                                tr("Fetch succeed. "));
+      break;
+    case 1: 
+      QMessageBox::warning(this, 
+                            fetchTitle, 
+                            tr("Remote look up failed. \nCheck remote settings. "));
+      break;
+    case 2: 
+      QMessageBox::critical(this, 
+                            fetchTitle, 
+                            tr("Fetch failed. "));
+      break;
+   }
+ }
+
+ void Textedit::gitPull() {
+   int err;
+   QString pullTitle = tr("Pull");
+
+   if(!isGitOpened) {
+    QMessageBox::critical(this, 
+                            pullTitle, 
+                            tr("Git repository has not been opened. "));
+    return;
+   }
+
+   err = this->repo.fetch();
+   if(err) {
+    QMessageBox::critical(this, 
+                            pullTitle, 
+                            tr("Fetch failed. "));
+    return;
+   }
+
+   err = this->repo.merge("origin/master");
+   switch(err) {
+    case 0:
+      QMessageBox::information(this, 
+                              pullTitle, 
+                              tr("Pull completed. "));
+    break;
+    case 1: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Unexpected state. "));
+      break;
+    case 2: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Resolving heads failed. "));
+      break;
+    case 3: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Merge analysis failed. "));
+      break;
+    case 4: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Fastforward failed. "));
+      break;
+    case 5: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Fast-forward is preferred, but only a merge is possible. "));
+      break;
+    case 6: 
+      QMessageBox::critical(this, 
+                                pullTitle, 
+                                tr("Merge failed. "));
+      break;
+    case 100: 
+      QMessageBox::information(this, 
+                                pullTitle, 
+                                tr("Already up-to-date"));
       break;
    }
  }

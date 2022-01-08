@@ -240,3 +240,131 @@ int Repo::push(authSSLInfo auth) {
 
     return 0;
 }
+
+int Repo::fetch() {
+    /**
+     * Default fetch origin 
+     * Now could only fetch origin
+     * 
+     * exit code: 
+     * 0 - normal exit
+     * 1 - remote lookup failed
+     * 2 - fetch failed
+     * 
+     */
+    int err;
+    git_remote *remote = nullptr;
+    git_fetch_options fetch_opts = GIT_FETCH_OPTIONS_INIT;
+
+    err = git_remote_lookup(&remote, this->repo, "origin");
+    if(err) {
+        git_remote_free(remote);
+        return 1;
+    }
+
+    err = git_remote_fetch(remote, NULL, &fetch_opts, "fetch");
+    if(err) {
+        git_remote_free(remote);
+        return 2;
+    }
+
+    git_remote_free(remote);
+    return 0;
+}
+
+int Repo::merge(std::string commit) {
+    /**
+     * exit code:  
+     * 0 - Normal exit, merged
+     * 1 - Unexpected state
+     * 2 - Resolving heads failed
+     * 3 - Merge analysis failed
+     * 4 - Fastforward failed
+     * 5 - Fast-forward is preferred, but only a merge is possible
+     * 6 - Merge failed
+     * 
+     * 100 - Already up-to-date
+     */
+    merge_options opts = {0};
+	git_repository_state_t state;
+	git_merge_analysis_t analysis;
+	git_merge_preference_t preference;
+	const char *path = ".";
+	int err = 0;
+
+	opts.heads = new const char *[1];
+	opts.heads_count = 1;
+	opts.annotated = NULL;
+	opts.annotated_count = 0;
+
+    opts.heads[0] = commit.c_str();
+
+    state = (git_repository_state_t) git_repository_state(this->repo);
+    if(state != GIT_REPOSITORY_STATE_NONE) {
+        delete[] opts.heads;
+        delete[] opts.annotated;
+        return 1;
+    }
+
+    err = resolve_heads(repo, &opts);
+    if(err) {
+        delete[] opts.heads;
+        delete[] opts.annotated;
+        return 2;
+    }
+
+    err = git_merge_analysis(&analysis, &preference,
+	                         this->repo,
+	                         (const git_annotated_commit **)opts.annotated,
+	                         opts.annotated_count);
+    if(err) {
+        delete[] opts.heads;
+        delete[] opts.annotated;
+        return 3;
+    }
+
+    if(analysis & GIT_MERGE_ANALYSIS_UP_TO_DATE) {
+        return 100;
+    }else if(analysis & GIT_MERGE_ANALYSIS_UNBORN ||
+	        (analysis & GIT_MERGE_ANALYSIS_FASTFORWARD &&
+	        !(preference & GIT_MERGE_PREFERENCE_NO_FASTFORWARD))) {
+
+        const git_oid *target_oid;
+        target_oid = git_annotated_commit_id(opts.annotated[0]);
+		assert(opts.annotated_count == 1);
+
+        err = perform_fastforward(repo, target_oid, (analysis & GIT_MERGE_ANALYSIS_UNBORN));
+        if(err) {
+            delete[] opts.heads;
+            delete[] opts.annotated;
+            return 4;
+        }
+    }else if(analysis & GIT_MERGE_ANALYSIS_NORMAL) {
+        git_merge_options merge_opts = GIT_MERGE_OPTIONS_INIT;
+		git_checkout_options checkout_opts = GIT_CHECKOUT_OPTIONS_INIT;
+
+		merge_opts.flags = 0;
+		merge_opts.file_flags = GIT_MERGE_FILE_STYLE_DIFF3;
+
+		checkout_opts.checkout_strategy = GIT_CHECKOUT_FORCE|GIT_CHECKOUT_ALLOW_CONFLICTS;
+
+        if (preference & GIT_MERGE_PREFERENCE_FASTFORWARD_ONLY) {
+            delete[] opts.heads;
+            delete[] opts.annotated;
+			return 5;
+		}
+
+        err = git_merge(this->repo,
+		                (const git_annotated_commit **)opts.annotated, opts.annotated_count,
+		                &merge_opts, &checkout_opts);
+        if(err) {
+            delete[] opts.heads;
+            delete[] opts.annotated;
+            return 6;
+        }
+    }
+
+    delete[] opts.heads;
+    delete[] opts.annotated;
+    return 0;
+}

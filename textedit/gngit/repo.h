@@ -3,9 +3,26 @@
 #include <string>
 #include <vector>
 #include <cstring>
-#include <functional>
+#include <assert.h>
 
 #include "auth.h"
+
+struct merge_options {
+	const char **heads;
+	size_t heads_count;
+
+	git_annotated_commit **annotated;
+	size_t annotated_count;
+
+	int no_commit : 1;
+};
+
+// This are all from libgit2/examples
+static int resolve_heads_s(git_repository *repo, merge_options *opts);
+int resolve_heads(git_repository *repo, merge_options *opts);
+int resolve_refish(git_annotated_commit **commit, git_repository *repo, const char *refish);
+static int perform_fastforward_s(git_repository *repo, const git_oid *target_oid, int is_unborn);
+int perform_fastforward(git_repository *repo, const git_oid *target_oid, int is_unborn);
 
 namespace gitnote {
 
@@ -33,6 +50,7 @@ namespace gitnote {
         std::string password;
     };
 
+
     class Repo {
         public:
             Repo();
@@ -56,8 +74,10 @@ namespace gitnote {
             int setFetchUrl(std::string name, std::string url);
             int setPushUrl(std::string name, std::string url);
 
-            // push and pull
+            // push and fetch 
             int push(authSSLInfo auth);
+            int fetch();
+            int merge(std::string commit);
 
             //auth
         private: 

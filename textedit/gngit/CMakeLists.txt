@@ -12,6 +12,7 @@ set(HEADER_FILES
 set(SOURCE_FILES 
     repo.cpp 
     auth.c 
+    mergeaux.cpp 
     )
 
 add_library(gngit 

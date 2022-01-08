@@ -77,6 +77,8 @@
     <addaction name="actionGitStatus"/>
     <addaction name="actionGitRemote"/>
     <addaction name="actionGitPush"/>
+    <addaction name="actionGitFetch"/>
+    <addaction name="actionGitPull"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -147,6 +149,16 @@
   <action name="actionGitPush">
    <property name="text">
     <string>Push</string>
+   </property>
+  </action>
+  <action name="actionGitFetch">
+   <property name="text">
+    <string>Fetch</string>
+   </property>
+  </action>
+  <action name="actionGitPull">
+   <property name="text">
+    <string>Pull</string>
    </property>
   </action>
  </widget>

@@ -33,6 +33,8 @@ class Textedit : public QMainWindow {
   void startDialogGitStatus();
   void startDialogGitRemote();
   void gitPush();
+  void gitFetch();
+  void gitPull();
 
  private:
   Ui::TexteditClass ui;
