@@ -231,6 +231,8 @@ void Textedit::startDialogGitStatus() {
   if(exit == QDialog::Accepted) {
     auth.username = dlg->getUsername().toStdString();
     auth.password = dlg->getPassword().toStdString();
+  } else {
+    return;
   }
 
    err = this->repo.push(auth);
