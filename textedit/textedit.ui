@@ -35,7 +35,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="font">
+        <font>
+         <family>SimSun-ExtB</family>
+        </font>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

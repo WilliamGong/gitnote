@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QFileInfo>
 #include <QFileSystemModel>
+#include <QTextCodec>
 
 #include "ui_textedit.h"
 #include "repo.h"
