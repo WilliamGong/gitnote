@@ -28,6 +28,7 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   connect(ui.actionGitPush, &QAction::triggered, this, &Textedit::gitPush);
   connect(ui.actionGitFetch, &QAction::triggered, this, &Textedit::gitFetch);
   connect(ui.actionGitPull, &QAction::triggered, this, &Textedit::gitPull);
+  connect(ui.actionAbout, &QAction::triggered, this, &Textedit::about);
 
   // var init
   this->path = "Untitled.txt";
@@ -349,4 +350,10 @@ void Textedit::startDialogGitStatus() {
                                 tr("Already up-to-date"));
       break;
    }
+ }
+
+ void Textedit::about() {
+   QMessageBox::about(this, 
+                        tr("About"), 
+                        tr("GitNote \nVersion: "));
  }

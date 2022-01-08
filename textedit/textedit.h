@@ -36,6 +36,9 @@ class Textedit : public QMainWindow {
   void gitFetch();
   void gitPull();
 
+  // help
+  void about();
+
  private:
   Ui::TexteditClass ui;
 
