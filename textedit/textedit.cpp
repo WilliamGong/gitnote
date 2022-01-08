@@ -25,6 +25,7 @@ Textedit::Textedit(QWidget *parent) : QMainWindow(parent) {
   connect(ui.actionGitInit, &QAction::triggered, this, &Textedit::gitInit);
   connect(ui.actionGitStatus, &QAction::triggered, this, &Textedit::startDialogGitStatus);
   connect(ui.actionGitRemote, &QAction::triggered, this, &Textedit::startDialogGitRemote);
+  connect(ui.actionGitPush, &QAction::triggered, this, &Textedit::gitPush);
 
   // var init
   this->path = "Untitled.txt";
@@ -208,5 +209,43 @@ void Textedit::startDialogGitStatus() {
      gitRemote->setRepo(&this->repo);
      gitRemote->update();
      gitRemote->show();
+   }
+ }
+
+ void Textedit::gitPush() {
+  int err;
+  QString pushTitle = tr("Push");
+  DialogAuthSSL *dlg = new DialogAuthSSL(this);
+  gitnote::authSSLInfo auth;
+
+  int exit = dlg->exec();
+  if(exit == QDialog::Accepted) {
+    auth.username = dlg->getUsername().toStdString();
+    auth.password = dlg->getPassword().toStdString();
+  }
+
+   err = this->repo.push(auth);
+
+   switch(err) {
+    case 0:
+      QMessageBox::information(this, 
+                                pushTitle, 
+                                tr("Push succeed. "));
+      break;
+    case 1:
+      QMessageBox::critical(this, 
+                            pushTitle, 
+                            tr("Finding remote repository failed. \nPlease check remote settings. "));
+      break;
+    case 2:
+      QMessageBox::critical(this, 
+                            pushTitle, 
+                            tr("Push options init failed. "));
+      break;
+    case 3:
+      QMessageBox::critical(this, 
+                            pushTitle, 
+                            tr("Push failed. "));
+      break;
    }
  }

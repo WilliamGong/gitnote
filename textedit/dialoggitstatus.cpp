@@ -26,9 +26,10 @@ DialogGitStatus::~DialogGitStatus() {
 }
 
 void DialogGitStatus::update() {
-        repo->statusUpdate();
-        this->setGitStatus(repo->getStatus());
-        ui->tableViewGitStatus->setModel(table);
+    git_status_list *stat;
+    this->repo->getStatus(&stat);
+    this->setGitStatus(stat);
+    ui->tableViewGitStatus->setModel(table);
 }
 
 void DialogGitStatus::setGitStatus(git_status_list *stat) {
@@ -43,6 +44,12 @@ void DialogGitStatus::setGitStatus(git_status_list *stat) {
      * 
      */
     QString path, fstatus, istatus, wstatus;
+
+    delete table;
+    table = new QStandardItemModel(this);
+    table->setColumnCount(2);
+    table->setHeaderData(0, Qt::Horizontal, tr("File"));
+    table->setHeaderData(1, Qt::Horizontal, tr("Status"));
 
     for(int i = 0; i < cnt; i++) {
         s = git_status_byindex(stat, i);

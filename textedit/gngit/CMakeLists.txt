@@ -6,10 +6,12 @@ set(CMAKE_AUTOUIC OFF)
 
 set(HEADER_FILES 
     repo.h 
+    auth.h 
     )
 
 set(SOURCE_FILES 
     repo.cpp 
+    auth.c 
     )
 
 add_library(gngit 

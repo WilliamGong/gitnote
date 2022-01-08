@@ -3,7 +3,9 @@
 #include <string>
 #include <vector>
 #include <cstring>
-#include "git2.h"
+#include <functional>
+
+#include "auth.h"
 
 namespace gitnote {
 
@@ -25,6 +27,12 @@ namespace gitnote {
         std::string fetchUrl;
         std::string pushUrl;
     };
+
+    struct authSSLInfo {
+        std::string username;
+        std::string password;
+    };
+
     class Repo {
         public:
             Repo();
@@ -33,10 +41,7 @@ namespace gitnote {
             int open(std::string path);
 
             // status
-            void statusUpdate();
-            inline git_status_list* getStatus() {
-                return this->stat;
-            }
+            void getStatus(git_status_list **stat);
 
             // add and commit
             void addAll();
@@ -51,11 +56,13 @@ namespace gitnote {
             int setFetchUrl(std::string name, std::string url);
             int setPushUrl(std::string name, std::string url);
 
+            // push and pull
+            int push(authSSLInfo auth);
+
+            //auth
         private: 
             git_repository *repo = nullptr;
 
-            // git status
-            git_status_list *stat = nullptr;
             // index
             git_index *index = nullptr;
 

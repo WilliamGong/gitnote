@@ -41,7 +41,7 @@ int Repo::open(std::string path) {
     return err;
 }
 
-void Repo::statusUpdate() {
+void Repo::getStatus(git_status_list **stat) {
     git_status_options opts;
     git_status_options_init(&opts, GIT_STATUS_OPTIONS_VERSION);
 
@@ -53,7 +53,7 @@ void Repo::statusUpdate() {
                     GIT_STATUS_OPT_RENAMES_HEAD_TO_INDEX | 
                     GIT_STATUS_OPT_SORT_CASE_SENSITIVELY;
     
-    git_status_list_new(&this->stat, this->repo, &opts);
+    git_status_list_new(stat, this->repo, &opts);
 }
 
 void Repo::addAll() { 
@@ -115,7 +115,6 @@ std::vector<std::string> Repo::getRemotesList() {
 
     for(int i = 0; i < (int) remotes.count; i++) {
         std::string name = remotes.strings[i];
-        // FIXME
         ret.push_back(name);
     }
 
@@ -186,4 +185,58 @@ int Repo::setPushUrl(std::string name, std::string url) {
     err = git_remote_set_pushurl(this->repo, name.c_str(), url.c_str());
 
     return err;
+}
+
+int Repo::push(authSSLInfo auth) {
+    /**
+     * exit code:
+     * 0 - normal exit
+     * 1 - remote lookup failed 
+     * 2 - push options init failed
+     * 3 - push failed
+     */
+    // could only push to origin
+    int err;
+    git_push_options options;
+    git_remote *remote = nullptr;
+    char *refspec = "refs/heads/master";
+    const git_strarray refspecs = {
+		&refspec,
+		1
+	};
+    bool isSetUpstream = false;
+
+    const char *tmp1 = auth.username.c_str();
+    const char *tmp2 = auth.password.c_str();
+    strcpy(user_name, tmp1);
+    strcpy(passwd, tmp2);
+
+    err = git_remote_lookup(&remote, this->repo, "origin");
+    if(err) {
+        return 1;
+    }
+    int cnt = git_remote_refspec_count(remote);
+    if(cnt) {
+        isSetUpstream = true;
+    }
+
+    err = git_push_options_init(&options, GIT_PUSH_OPTIONS_VERSION);
+    if(err) {
+        return 2;
+    }
+    options.callbacks.credentials = credsSSL;
+
+    err = git_remote_push(remote, &refspecs, &options);
+    if((err == -1) && !isSetUpstream) {
+        int errSet = git_remote_add_push(this->repo, "origin", refspec);
+        if(!errSet) {
+            isSetUpstream = true;
+            err = git_remote_push(remote, &refspecs, &options);
+        }
+        return 3;
+    }else if(err) {
+        return 3;
+    }
+
+    return 0;
 }

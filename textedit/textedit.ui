@@ -76,6 +76,7 @@
     <addaction name="actionGitInit"/>
     <addaction name="actionGitStatus"/>
     <addaction name="actionGitRemote"/>
+    <addaction name="actionGitPush"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -141,6 +142,11 @@
   <action name="actionGitRemote">
    <property name="text">
     <string>Remote</string>
+   </property>
+  </action>
+  <action name="actionGitPush">
+   <property name="text">
+    <string>Push</string>
    </property>
   </action>
  </widget>

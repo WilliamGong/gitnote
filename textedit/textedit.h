@@ -8,6 +8,7 @@
 #include "repo.h"
 #include "dialoggitstatus.h"
 #include"dialoggitremote.h"
+#include "dialogauthssl.h"
 
 // forward declaration
 class QAction;
@@ -31,6 +32,7 @@ class Textedit : public QMainWindow {
   void gitInit();
   void startDialogGitStatus();
   void startDialogGitRemote();
+  void gitPush();
 
  private:
   Ui::TexteditClass ui;

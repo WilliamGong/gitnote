@@ -23,6 +23,7 @@ set(SRC_FILE
     dialoggitremote.cpp 
     dialoggitremoteadd.cpp 
     dialoggitremoteedit.cpp 
+    dialogauthssl.cpp 
     )
 
 set(HEADER_FILE 
@@ -31,6 +32,7 @@ set(HEADER_FILE
     dialoggitremote.h 
     dialoggitremoteadd.h 
     dialoggitremoteedit.h 
+    dialogauthssl.h 
     )
 
 set(FORM_FILE 
@@ -39,6 +41,7 @@ set(FORM_FILE
     dialoggitremote.ui 
     dialoggitremoteadd.ui 
     dialoggitremoteedit.ui 
+    dialogauthssl.ui 
     )
 
 set(RESOURCES_FILE 
