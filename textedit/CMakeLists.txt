@@ -1,5 +1,12 @@
 project(textedit)
 
+find_package(Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
+
+# get deployqt location
+get_target_property(_qmake_executable Qt5::qmake IMPORTED_LOCATION)
+get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
+find_program(DEPLOYQT_EXECUTABLE NAMES windeployqt HINTS "${_qt_bin_dir}")
+
 include_directories(gngit)
 include_directories(${CMAKE_SOURCE_DIR}/libgit2/include)
 include_directories(${CMAKE_BINARY_DIR}/include)
@@ -12,10 +19,6 @@ set(CMAKE_AUTOUIC ON)
 if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
-
-# set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.12.11/5.12.11/msvc2017_64/lib/cmake")
-find_package(Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
-
 
 set(SRC_FILE 
     main.cpp 
@@ -65,3 +68,10 @@ target_link_libraries(${PROJECT_NAME}
                         )
 
 
+if(WIN32)
+        add_custom_command(TARGET textedit 
+                                POST_BUILD 
+                                COMMAND ${DEPLOYQT_EXECUTABLE} "$<TARGET_FILE:textedit>" 
+                                --$<LOWER_CASE:$<CONFIG>>
+                                )
+endif()
