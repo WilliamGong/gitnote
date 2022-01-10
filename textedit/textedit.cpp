@@ -355,7 +355,9 @@ void Textedit::startDialogGitStatus() {
  }
 
  void Textedit::about() {
+   QString gitVersion = GIT_VERSION, buildType = CMAKE_BUILD_TYPE;
+   QString version = gitVersion + "-" + buildType;
    QMessageBox::about(this, 
                         tr("About"), 
-                        tr("GitNote \nVersion: "));
+                        tr("GitNote \nVersion: %1").arg(version));
  }

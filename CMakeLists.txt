@@ -4,9 +4,15 @@ project(gitnote VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+find_package(Git)
+
+execute_process(COMMAND ${GIT_EXECUTABLE} describe --tags
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+                OUTPUT_VARIABLE GIT_VERSION 
+                OUTPUT_STRIP_TRAILING_WHITESPACE 
+                )
+
+configure_file(version.h.in include/version.h)
 
 add_subdirectory(textedit)
 add_subdirectory(libgit2)

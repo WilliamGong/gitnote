@@ -2,6 +2,7 @@ project(textedit)
 
 include_directories(gngit)
 include_directories(${CMAKE_SOURCE_DIR}/libgit2/include)
+include_directories(${CMAKE_BINARY_DIR}/include)
 add_subdirectory(gngit)
 
 set(CMAKE_AUTOMOC ON)
