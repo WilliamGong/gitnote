@@ -17,7 +17,9 @@ install(TARGETS textedit git2
         LIBRARY DESTINATION lib 
         ARCHIVE DESTINATION lib
         )
-install(FILES textedit/textedit_zh.qm 
+install(FILES 
+        textedit/textedit_zh.qm 
+        textedit/qt_zh_CN.qm 
         CONFIGURATIONS Debug 
         DESTINATION bin 
         )
