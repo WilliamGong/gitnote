@@ -6,17 +6,17 @@
     <message>
         <location filename="dialogauthssl.ui" line="14"/>
         <source>Authentication</source>
-        <translation type="unfinished">身份验证</translation>
+        <translation>身份验证</translation>
     </message>
     <message>
         <location filename="dialogauthssl.ui" line="51"/>
         <source>User name: </source>
-        <translation type="unfinished">用户名：</translation>
+        <translation>用户名：</translation>
     </message>
     <message>
         <location filename="dialogauthssl.ui" line="61"/>
         <source>Password: </source>
-        <translation type="unfinished">密码：</translation>
+        <translation>密码：</translation>
     </message>
 </context>
 <context>
@@ -24,29 +24,29 @@
     <message>
         <location filename="dialoggitremote.ui" line="14"/>
         <source>Remote</source>
-        <translation type="unfinished">远程控制</translation>
+        <translation>远程仓库</translation>
     </message>
     <message>
         <location filename="dialoggitremote.ui" line="56"/>
         <source>Remote repositories: </source>
-        <translation type="unfinished">远程仓库：</translation>
+        <translation>远程仓库：</translation>
     </message>
     <message>
         <location filename="dialoggitremote.ui" line="80"/>
         <source>Refresh</source>
-        <translation type="unfinished">更新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="dialoggitremote.ui" line="87"/>
         <location filename="dialoggitremote.cpp" line="45"/>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="dialoggitremote.ui" line="94"/>
         <location filename="dialoggitremote.cpp" line="104"/>
         <source>Remove</source>
-        <translation type="unfinished">移动</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="dialoggitremote.ui" line="101"/>
@@ -57,58 +57,58 @@
     <message>
         <location filename="dialoggitremote.cpp" line="64"/>
         <source>Name is empty. </source>
-        <translation type="unfinished">姓名为空。</translation>
+        <translation>远程仓库名为空。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="72"/>
         <source>URL is empty. </source>
-        <translation type="unfinished">URL为空。</translation>
+        <translation>URL 为空。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="83"/>
         <source>Remote add failed. </source>
-        <translation type="unfinished">远程添加失败。</translation>
+        <translation>远程仓库添加失败。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="105"/>
         <source>Remove failed. </source>
-        <translation type="unfinished">远程连接失败。</translation>
+        <translation>删除失败。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="155"/>
         <source>Name is empty. 
 Name will not change. </source>
-        <translation type="unfinished">姓名为空。
-姓名不会变化。</translation>
+        <translation>仓库名为空。
+仓库名不会变化。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="161"/>
         <source>Rename failed with new name: 
 %1
 Name will not change. </source>
-        <translation type="unfinished">重命名失败。
-姓名不会变化。</translation>
+        <translation>重命名失败。
+仓库名不会变化。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="172"/>
         <source>Fetch URL is empty. 
 Fetch URL will not change. </source>
-        <translation type="unfinished">Fetch URL为空。
-Fetch URL不会变化。</translation>
+        <translation>提取 URL 为空。
+提取 URL不会变化。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="182"/>
         <source>Fetch URL change failed. 
 Fetch URL will not change. </source>
-        <translation type="unfinished">Fetch URL失败。
-Fetch URL不会变化。</translation>
+        <translation>提取 URL 更改失败。
+提取 URL不会变化。</translation>
     </message>
     <message>
         <location filename="dialoggitremote.cpp" line="221"/>
         <source>Push URL is failed. 
 Push URL will not change. </source>
-        <translation type="unfinished">Push URL失败。
-Push URL不会变化。</translation>
+        <translation>推送 URL 更改失败。
+推送 URL不会变化。</translation>
     </message>
 </context>
 <context>
@@ -116,17 +116,17 @@ Push URL不会变化。</translation>
     <message>
         <location filename="dialoggitremoteadd.ui" line="14"/>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="dialoggitremoteadd.ui" line="51"/>
         <source>Name: </source>
-        <translation type="unfinished">姓名：</translation>
+        <translation>仓库名：</translation>
     </message>
     <message>
         <location filename="dialoggitremoteadd.ui" line="61"/>
         <source>URL: </source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL: </translation>
     </message>
 </context>
 <context>
@@ -139,17 +139,17 @@ Push URL不会变化。</translation>
     <message>
         <location filename="dialoggitremoteedit.ui" line="51"/>
         <source>Name: </source>
-        <translation type="unfinished">姓名：</translation>
+        <translation>仓库名：</translation>
     </message>
     <message>
         <location filename="dialoggitremoteedit.ui" line="61"/>
         <source>Fetch URL: </source>
-        <translation type="unfinished">Fetch URL:</translation>
+        <translation>提取 URL:</translation>
     </message>
     <message>
         <location filename="dialoggitremoteedit.ui" line="71"/>
         <source>Push URL: </source>
-        <translation type="unfinished">Push URL:</translation>
+        <translation>推送 URL:</translation>
     </message>
 </context>
 <context>
@@ -157,27 +157,27 @@ Push URL不会变化。</translation>
     <message>
         <location filename="dialoggitstatus.ui" line="14"/>
         <source>Git Status</source>
-        <translation type="unfinished">Git状态</translation>
+        <translation>Git状态</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.ui" line="62"/>
         <source>File Changed</source>
-        <translation type="unfinished">文件更改</translation>
+        <translation>文件更改</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.ui" line="98"/>
         <source>Refresh</source>
-        <translation type="unfinished">更新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.ui" line="105"/>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>暂存</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.ui" line="112"/>
         <source>Commit</source>
-        <translation type="unfinished">Commit</translation>
+        <translation>提交</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.cpp" line="13"/>
@@ -189,17 +189,17 @@ Push URL不会变化。</translation>
         <location filename="dialoggitstatus.cpp" line="14"/>
         <location filename="dialoggitstatus.cpp" line="52"/>
         <source>Status</source>
-        <translation type="unfinished">状态</translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.cpp" line="122"/>
         <source>Git commit</source>
-        <translation type="unfinished">Git commit</translation>
+        <translation>Git 提交</translation>
     </message>
     <message>
         <location filename="dialoggitstatus.cpp" line="123"/>
         <source>Commit succeed. </source>
-        <translation type="unfinished">Commit成功。</translation>
+        <translation>提交成功。</translation>
     </message>
 </context>
 <context>
@@ -232,13 +232,13 @@ Push URL不会变化。</translation>
         <location filename="textedit.cpp" line="94"/>
         <location filename="textedit.cpp" line="164"/>
         <source>Git</source>
-        <translation type="unfinished">Git</translation>
+        <translation>Git</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="95"/>
         <location filename="textedit.cpp" line="165"/>
         <source>Git repository open sucessfully. </source>
-        <translation type="unfinished">Git仓库打开成功。</translation>
+        <translation>Git 仓库打开成功。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="107"/>
@@ -255,151 +255,152 @@ Push URL不会变化。</translation>
     <message>
         <location filename="textedit.cpp" line="183"/>
         <source>Init succeed. </source>
-        <translation type="unfinished">初始化成功。</translation>
+        <translation>初始化成功。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="184"/>
         <source>Git repository initialization succeed. </source>
-        <translation type="unfinished">Git仓库初始化成功。</translation>
+        <translation>Git 仓库初始化成功。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="189"/>
         <source>Git Init</source>
-        <translation type="unfinished">Git初始化</translation>
+        <translation>Git 初始化仓库</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="190"/>
         <source>A Git repository has been opened, do not re init. </source>
-        <translation type="unfinished">Git仓库打开成功，不要重新初始化。</translation>
+        <translation>Git 仓库已经成功打开，不要重新初始化。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="197"/>
         <source>Git Status</source>
-        <translation type="unfinished">Git状态</translation>
+        <translation>Git 状态</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="198"/>
         <location filename="textedit.cpp" line="210"/>
         <source>No Git repository has opened. </source>
-        <translation type="unfinished">没有Git仓库被打开。</translation>
+        <translation>没有打开的 Git 仓库</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="209"/>
         <source>Git Remote</source>
-        <translation type="unfinished">远程Git</translation>
+        <translation>Git 远程</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="219"/>
         <source>Push</source>
-        <translation type="unfinished">Push</translation>
+        <translation>推送</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="223"/>
         <location filename="textedit.cpp" line="268"/>
         <location filename="textedit.cpp" line="298"/>
         <source>Git repository has not been opened. </source>
-        <translation type="unfinished">Git仓库没有被打开。</translation>
+        <translation>没有打开 Git 仓库。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="242"/>
         <source>Push succeed. </source>
-        <translation type="unfinished">Push成功。</translation>
+        <translation>推送成功。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="247"/>
         <source>Finding remote repository failed. 
 Please check remote settings. </source>
-        <translation type="unfinished">寻找远程仓库失败。
-请检查远程设置。</translation>
+        <translation>查找远程仓库失败。
+请检查远程仓库设置。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="252"/>
         <source>Push options init failed. </source>
-        <translation type="unfinished">Push选项初始化失败。</translation>
+        <translation>推送选项初始化失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="257"/>
         <source>Push failed. </source>
-        <translation type="unfinished">Push失败。</translation>
+        <translation>推送失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="264"/>
         <source>Fetch</source>
-        <translation type="unfinished">Fetch</translation>
+        <translation>提取</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="276"/>
         <source>Fetch succeed. </source>
-        <translation type="unfinished">Fetch成功。</translation>
+        <translation>提取成功。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="281"/>
         <source>Remote look up failed. 
 Check remote settings. </source>
-        <translation type="unfinished">远程查看失败。
-检查远程设置。</translation>
+        <translation>远程仓库信息查看失败。
+检查远程仓库设置。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="286"/>
         <location filename="textedit.cpp" line="306"/>
         <source>Fetch failed. </source>
-        <translation type="unfinished">Fetch失败。</translation>
+        <translation>提取失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="293"/>
         <source>Pull</source>
-        <translation type="unfinished">Pull</translation>
+        <translation>拉取</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="315"/>
         <source>Pull completed. </source>
-        <translation type="unfinished">Pull完成。</translation>
+        <translation>拉取完成。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="320"/>
         <source>Unexpected state. </source>
-        <translation type="unfinished">意外状况。</translation>
+        <translation>意外情况。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="325"/>
         <source>Resolving heads failed. </source>
-        <translation type="unfinished">解析heads失败。</translation>
+        <translation>解析 heads 失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="330"/>
         <source>Merge analysis failed. </source>
-        <translation type="unfinished">合并分析失败。</translation>
+        <translation>合并分析失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="335"/>
         <source>Fastforward failed. </source>
-        <translation type="unfinished">快进失败。</translation>
+        <translation>Fast-forward 模式合并失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="340"/>
         <source>Fast-forward is preferred, but only a merge is possible. </source>
-        <translation type="unfinished">快进是首选项，登山只有合并是可能的。</translation>
+        <translation>Fast-forward 模式是首选项，但只能合并。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="345"/>
         <source>Merge failed. </source>
-        <translation type="unfinished">合并失败。</translation>
+        <translation>合并失败。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="350"/>
         <source>Already up-to-date</source>
-        <translation type="unfinished">已经是最新</translation>
+        <translation>已经是最新版本。</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="357"/>
         <source>About</source>
-        <translation type="unfinished">关于</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="358"/>
         <source>GitNote 
 Version: </source>
-        <translation type="unfinished">Gitnote版本：</translation>
+        <translation>Gitnote 
+版本：</translation>
     </message>
     <message>
         <location filename="textedit.cpp" line="65"/>
@@ -454,7 +455,7 @@ Version: </source>
     <message>
         <location filename="textedit.ui" line="74"/>
         <source>Git</source>
-        <translation type="unfinished">Git</translation>
+        <translation>Git</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="91"/>
@@ -514,37 +515,37 @@ Version: </source>
     <message>
         <location filename="textedit.ui" line="136"/>
         <source>Init</source>
-        <translation type="unfinished">初始化</translation>
+        <translation>初始化</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="141"/>
         <source>Status</source>
-        <translation type="unfinished">状态</translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="146"/>
         <source>Remote</source>
-        <translation type="unfinished">远程控制</translation>
+        <translation>远程仓库</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="151"/>
         <source>Push</source>
-        <translation type="unfinished">Push</translation>
+        <translation>推送</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="156"/>
         <source>Fetch</source>
-        <translation type="unfinished">Fetch</translation>
+        <translation>提取</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="161"/>
         <source>Pull</source>
-        <translation type="unfinished">Pull</translation>
+        <translation>拉取</translation>
     </message>
     <message>
         <location filename="textedit.ui" line="166"/>
         <source>About</source>
-        <translation type="unfinished">关于</translation>
+        <translation>关于</translation>
     </message>
 </context>
 </TS>
