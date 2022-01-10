@@ -366,3 +366,4 @@ FodyWeavers.xsd
 qmake/
 
 build/
+deploy/
