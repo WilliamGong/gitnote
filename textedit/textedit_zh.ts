@@ -295,111 +295,117 @@ Push URL will not change. </source>
     </message>
     <message>
         <location filename="textedit.cpp" line="223"/>
-        <location filename="textedit.cpp" line="268"/>
-        <location filename="textedit.cpp" line="298"/>
+        <location filename="textedit.cpp" line="270"/>
+        <location filename="textedit.cpp" line="300"/>
         <source>Git repository has not been opened. </source>
         <translation>没有打开 Git 仓库。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="242"/>
+        <location filename="textedit.cpp" line="244"/>
         <source>Push succeed. </source>
         <translation>推送成功。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="247"/>
+        <location filename="textedit.cpp" line="249"/>
         <source>Finding remote repository failed. 
 Please check remote settings. </source>
         <translation>查找远程仓库失败。
 请检查远程仓库设置。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="252"/>
+        <location filename="textedit.cpp" line="254"/>
         <source>Push options init failed. </source>
         <translation>推送选项初始化失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="257"/>
+        <location filename="textedit.cpp" line="259"/>
         <source>Push failed. </source>
         <translation>推送失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="264"/>
+        <location filename="textedit.cpp" line="266"/>
         <source>Fetch</source>
         <translation>提取</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="276"/>
+        <location filename="textedit.cpp" line="278"/>
         <source>Fetch succeed. </source>
         <translation>提取成功。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="281"/>
+        <location filename="textedit.cpp" line="283"/>
         <source>Remote look up failed. 
 Check remote settings. </source>
         <translation>远程仓库信息查看失败。
 检查远程仓库设置。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="286"/>
-        <location filename="textedit.cpp" line="306"/>
+        <location filename="textedit.cpp" line="288"/>
+        <location filename="textedit.cpp" line="308"/>
         <source>Fetch failed. </source>
         <translation>提取失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="293"/>
+        <location filename="textedit.cpp" line="295"/>
         <source>Pull</source>
         <translation>拉取</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="315"/>
+        <location filename="textedit.cpp" line="317"/>
         <source>Pull completed. </source>
         <translation>拉取完成。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="320"/>
+        <location filename="textedit.cpp" line="322"/>
         <source>Unexpected state. </source>
         <translation>意外情况。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="325"/>
+        <location filename="textedit.cpp" line="327"/>
         <source>Resolving heads failed. </source>
         <translation>解析 heads 失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="330"/>
+        <location filename="textedit.cpp" line="332"/>
         <source>Merge analysis failed. </source>
         <translation>合并分析失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="335"/>
+        <location filename="textedit.cpp" line="337"/>
         <source>Fastforward failed. </source>
         <translation>Fast-forward 模式合并失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="340"/>
+        <location filename="textedit.cpp" line="342"/>
         <source>Fast-forward is preferred, but only a merge is possible. </source>
         <translation>Fast-forward 模式是首选项，但只能合并。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="345"/>
+        <location filename="textedit.cpp" line="347"/>
         <source>Merge failed. </source>
         <translation>合并失败。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="350"/>
+        <location filename="textedit.cpp" line="352"/>
         <source>Already up-to-date</source>
         <translation>已经是最新版本。</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="357"/>
+        <location filename="textedit.cpp" line="361"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="textedit.cpp" line="358"/>
+        <location filename="textedit.cpp" line="362"/>
+        <source>GitNote 
+Version: %1</source>
+        <translation>GitNote 
+版本：%1</translation>
+    </message>
+    <message>
         <source>GitNote 
 Version: </source>
-        <translation>Gitnote 
+        <translation type="vanished">Gitnote 
 版本：</translation>
     </message>
     <message>
